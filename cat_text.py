@@ -1,24 +1,22 @@
 import glob
 import os
 
-file_integrate = 15
-
-def NER(file_integrate):
-    f1 = glob.glob("../../../ENER/Event/ENEs/Competition/*.NE")
-    f2 = glob.glob("../../../ENER/Event/ENEs/Election/*.NE")
-    f3 = glob.glob("../../../ENER/Event/ENEs/Flood_Damage/*.NE")
-    f4 = glob.glob("../../../ENER/Event/ENEs/Religious_Festival/*.NE")
-    f5 = glob.glob("../../../ENER/Event/ENEs/Conference/*.NE")
-    f6 = glob.glob("../../../ENER/Event/ENEs/Event_Other/*.NE")
-    f7 = glob.glob("../../../ENER/Event/ENEs/Incident_Other/*.NE")
-    f8 = glob.glob("../../../ENER/Event/ENEs/Traffic_Accident/*.NE")
-    f9 = glob.glob("../../../ENER/Event/ENEs/Earthquake/*.NE")
-    f10 = glob.glob("../../../ENER/Event/ENEs/Exhibition/*.NE")
-    f11 = glob.glob("../../../ENER/Event/ENEs/Occasion_Other/*.NE")
-    f12 = glob.glob("../../../ENER/Event/ENEs/War/*.NE")
+def NER(start,end,sw):
+    f1 = glob.glob("../../../ENER/Event/ENE_lim20/Competition/*.NE")
+    f2 = glob.glob("../../../ENER/Event/ENE_lim20/Election/*.NE")
+    f3 = glob.glob("../../../ENER/Event/ENE_lim20/Flood_Damage/*.NE")
+    f4 = glob.glob("../../../ENER/Event/ENE_lim20/Religious_Festival/*.NE")
+    f5 = glob.glob("../../../ENER/Event/ENE_lim20/Conference/*.NE")
+    f6 = glob.glob("../../../ENER/Event/ENE_lim20/Event_Other/*.NE")
+    f7 = glob.glob("../../../ENER/Event/ENE_lim20/Incident_Other/*.NE")
+    f8 = glob.glob("../../../ENER/Event/ENE_lim20/Traffic_Accident/*.NE")
+    f9 = glob.glob("../../../ENER/Event/ENE_lim20/Earthquake/*.NE")
+    f10 = glob.glob("../../../ENER/Event/ENE_lim20/Exhibition/*.NE")
+    f11 = glob.glob("../../../ENER/Event/ENE_lim20/Occasion_Other/*.NE")
+    f12 = glob.glob("../../../ENER/Event/ENE_lim20/War/*.NE")
 
     all = []
-    for i in range(file_integrate):
+    for i in range(start,end):
         all.append(f1[i])
         all.append(f2[i])
         all.append(f3[i])
@@ -32,25 +30,27 @@ def NER(file_integrate):
         all.append(f11[i])
         all.append(f12[i])
     all_str = ' '.join(all)
-    cmd = f"cat {all_str} > ./NER/all{file_integrate}.NE"
+    prt = f"{end-start}_{sw}"
+    cmd = f"cat {all_str} > ./NER/all{prt}_NE.conll"
     os.system(cmd)
 
-def ENER(file_integrate):
-    f1 = glob.glob("../../../ENER/Event/plain/Competition/*.ENE")
-    f2 = glob.glob("../../../ENER/Event/plain/Election/*.ENE")
-    f3 = glob.glob("../../../ENER/Event/plain/Flood_Damage/*.ENE")
-    f4 = glob.glob("../../../ENER/Event/plain/Religious_Festival/*.ENE")
-    f5 = glob.glob("../../../ENER/Event/plain/Conference/*.ENE")
-    f6 = glob.glob("../../../ENER/Event/plain/Event_Other/*.ENE")
-    f7 = glob.glob("../../../ENER/Event/plain/Incident_Other/*.ENE")
-    f8 = glob.glob("../../../ENER/Event/plain/Traffic_Accident/*.ENE")
-    f9 = glob.glob("../../../ENER/Event/plain/Earthquake/*.ENE")
-    f10 = glob.glob("../../../ENER/Event/plain/Exhibition/*.ENE")
-    f11 = glob.glob("../../../ENER/Event/plain/Occasion_Other/*.ENE")
-    f12 = glob.glob("../../../ENER/Event/plain/War/*.ENE")
+def ENER(start,end,sw):
+#    ENER/Event/ENE_lim20/ENEtext_list/1.9.0
+    f1 = glob.glob("../../../ENER/Event/ENE_lim20/ENEtext_list/1.9.0/*.ENE")
+    f2 = glob.glob("../../../ENER/Event/ENE_lim20/ENEtext_list/1.9.1.0/*.ENE")
+    f3 = glob.glob("../../../ENER/Event/ENE_lim20/ENEtext_list/1.9.1.1/*.ENE")
+    f4 = glob.glob("../../../ENER/Event/ENE_lim20/ENEtext_list/1.9.1.2/*.ENE")
+    f5 = glob.glob("../../../ENER/Event/ENE_lim20/ENEtext_list/1.9.1.3/*.ENE")
+    f6 = glob.glob("../../../ENER/Event/ENE_lim20/ENEtext_list/1.9.1.4/*.ENE")
+    f7 = glob.glob("../../../ENER/Event/ENE_lim20/ENEtext_list/1.9.1.5/*.ENE")
+    f8 = glob.glob("../../../ENER/Event/ENE_lim20/ENEtext_list/1.9.2.0/*.ENE")
+    f9 = glob.glob("../../../ENER/Event/ENE_lim20/ENEtext_list/1.9.2.1/*.ENE")
+    f10 = glob.glob("../../../ENER/Event/ENE_lim20/ENEtext_list/1.9.2.2/*.ENE")
+    f11 = glob.glob("../../../ENER/Event/ENE_lim20/ENEtext_list/1.9.4.1/*.ENE")
+    f12 = glob.glob("../../../ENER/Event/ENE_lim20/ENEtext_list/1.9.4.2/*.ENE")
 
     all = []
-    for i in range(file_integrate):
+    for i in range(start,end):
         all.append(f1[i])
         all.append(f2[i])
         all.append(f3[i])
@@ -64,8 +64,18 @@ def ENER(file_integrate):
         all.append(f11[i])
         all.append(f12[i])
     all_str = ' '.join(all)
-    cmd = f"cat {all_str} > ./ENER/all{file_integrate}.ENE"
+    prt = f"{end-start}_{sw}"
+    cmd = f"cat {all_str} > ./ENER/all{prt}_ENE.conll"
     os.system(cmd)
 
-NER(file_integrate)
+# NER(file_integrate)
 # ENER(file_integrate)
+def main():
+    flag = 1
+    if flag == 0:
+        NER(0,10,"A")
+        NER(10,20,"B")
+    else:
+        ENER(0,1,"TEST")
+#        ENER(10,20,"B")
+main()
